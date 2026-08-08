@@ -1,0 +1,55 @@
+name: Build Windows Installer
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore project
+        run: dotnet restore MacBookStyleForWindows.csproj
+
+      - name: Build and Publish
+        run: dotnet publish MacBookStyleForWindows.csproj -c Release -r win-x64 --self-contained true -o publish
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y --no-progress
+
+      - name: Create Windows Installer
+        shell: powershell
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+
+          if (!(Test-Path $iscc)) {
+            Write-Error "Inno Setup compiler was not found."
+            exit 1
+          }
+
+          & $iscc "installer\setup.iss"
+
+      - name: Find Installer
+        shell: powershell
+        run: |
+          Get-ChildItem -Path . -Filter "*.exe" -Recurse | Select-Object FullName
+
+      - name: Upload Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacBook-Style-for-Windows-Setup
+          path: |
+            installer/output/*.exe
+            publish/*.exe
+          if-no-files-found: error
