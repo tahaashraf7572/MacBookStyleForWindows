@@ -1,0 +1,34 @@
+<Window x:Class="MacBookStyleForWindows.Search.SpotlightWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Spotlight"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        Width="640"
+        SizeToContent="Height"
+        Deactivated="Window_Deactivated">
+
+    <Border Background="{StaticResource SurfaceBrush}" CornerRadius="{StaticResource PanelRadius}" Padding="4">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.4" Color="Black"/>
+        </Border.Effect>
+        <StackPanel>
+            <TextBox x:Name="SearchBox"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="{StaticResource TextPrimaryBrush}"
+                     CaretBrush="{StaticResource TextPrimaryBrush}"
+                     FontSize="26"
+                     Padding="16,14"
+                     TextChanged="SearchBox_TextChanged"
+                     PreviewKeyDown="SearchBox_PreviewKeyDown"/>
+            <ItemsControl x:Name="ResultsList" Margin="4,0,4,6">
+                <!-- Virtualized implicitly: list is capped to 8 results, so no VirtualizingStackPanel needed -->
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+</Window>
