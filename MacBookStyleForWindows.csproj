@@ -19,7 +19,6 @@
     <Platforms>x64</Platforms>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 
-    <!-- Performance -->
     <PublishReadyToRun>true</PublishReadyToRun>
     <TieredPGO>true</TieredPGO>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -27,37 +26,6 @@
     <Version>1.0.0</Version>
     <Company>MacBookStyleForWindows</Company>
     <Product>MacBook Style for Windows</Product>
-  </PropertyGroup>
-
-</Project><Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-
-    <TargetFramework>net8.0-windows</TargetFramework>
-
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-
-    <RootNamespace>MacBookStyleForWindows</RootNamespace>
-    <AssemblyName>MacBookStyleForWindows</AssemblyName>
-
-    <Platforms>x64</Platforms>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
-
-    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
-
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <TieredPGO>true</TieredPGO>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <ServerGarbageCollection>false</ServerGarbageCollection>
-    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-
-    <Version>1.0.0</Version>
   </PropertyGroup>
 
 </Project>
